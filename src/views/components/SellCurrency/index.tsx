@@ -2,7 +2,7 @@ import React, {useCallback} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 //types
 import {PaymentBase} from 'types'
-import {OptionType} from 'views/reusable/Select'
+import {OptionType} from 'views/reusable/Select/Select.interface'
 //components
 import Currency from 'views/components/Currency'
 //actions

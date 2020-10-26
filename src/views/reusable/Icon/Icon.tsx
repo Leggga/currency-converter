@@ -1,20 +1,14 @@
-import React, {memo, SVGProps, useMemo} from 'react'
+import React, {memo, useMemo} from 'react'
 //assets
 import {ReactComponent as ArrowIcon} from 'assets/icons/arrow.svg'
 import {ReactComponent as LoaderIcon} from 'assets/icons/loader.svg'
 import {ReactComponent as ShieldIcon} from 'assets/icons/shield.svg'
+import {IconsPack, Props} from './Icon.interface'
 
-type IconsNames = 'arrow' | 'loader' | 'shield'
-
-const icons: Record<IconsNames, React.FC<SVGProps<SVGSVGElement>>> = {
+const icons: IconsPack = {
   arrow: ArrowIcon,
   loader: LoaderIcon,
   shield: ShieldIcon
-}
-
-type Props = {
-  name: IconsNames
-  className?: string
 }
 
 const Icon: React.FC<Props> = ({name, className = '', ...props}) => {

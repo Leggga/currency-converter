@@ -1,21 +1,10 @@
 import React, {useCallback, useMemo, useRef, useState} from 'react'
 import classNames from 'classnames'
 import useOnClickOutside from 'hooks/useOnClickOutside'
+import {OptionProps, OptionType, Props} from './Select.interface'
 import Icon from 'views/reusable/Icon'
-import './Select.scss'
-
-export type OptionType = {
-  value: number
-  label: string
-}
-
-type Props = {
-  options: OptionType[]
-  value: number
-  className?: string
-  placeholder?: string
-  onChange: (option: OptionType) => void
-}
+//styles
+import './Select.styles.scss'
 
 const Select: React.FC<Props> = ({options, value, placeholder = '', className = '', onChange}) => {
   const selectRef = useRef(null)
@@ -55,12 +44,6 @@ const Select: React.FC<Props> = ({options, value, placeholder = '', className = 
       }
     </div>
   )
-}
-
-type OptionProps = {
-  selected: boolean
-  option: OptionType
-  onClick: (option: OptionType, isSelected: boolean) => void
 }
 
 const Option: React.FC<OptionProps> = ({option, selected = false, onClick}) => {
