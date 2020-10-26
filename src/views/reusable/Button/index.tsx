@@ -10,7 +10,14 @@ type PropsType = {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const Button: React.FC<PropsType & ButtonHTMLAttributes<HTMLButtonElement>> = React.memo(({classname = '', variant = 'primary', isLoading, children, onClick}) => {
+const Button: React.FC<PropsType & ButtonHTMLAttributes<HTMLButtonElement>>
+  = React.memo(({
+                  classname = '',
+                  variant = 'primary',
+                  isLoading,
+                  children,
+                  onClick
+                }) => {
   const handleClick = useCallback(e => !isLoading && onClick(e), [onClick, isLoading])
 
   return (

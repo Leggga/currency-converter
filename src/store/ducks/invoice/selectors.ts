@@ -7,5 +7,8 @@ export const selectInvoicePayMethods = createSelector(selectInvoice, invoice => 
   value: item.id,
   label: item.name
 })))
-export const selectCurrentInvoicePayMethod = createSelector(selectInvoice, invoice => invoice.currentPayMethod)
+export const selectCurrentInvoicePayMethod = createSelector(selectInvoice, invoice => ({
+  id: invoice.currentPayMethod,
+  name: invoice.payMethods.find(m => m.id === invoice.currentPayMethod)?.name
+}))
 export const selectInvoiceAmount = createSelector(selectInvoice, invoice => invoice.amount)

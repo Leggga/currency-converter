@@ -1,13 +1,13 @@
 import {createSelector} from 'reselect'
 import {AppState} from 'store/ducks/rootReducer'
-import {ConverterRequestData} from 'store/ducks/converter/api'
+import {ConverterRequestData} from 'types'
 
 const selectState = (state: AppState) => state
 const selectConverter = (state: AppState) => state.converter
 
-
-export const selectBase = createSelector(selectConverter, converter => converter.base)
 export const selectIsCalculating = createSelector(selectConverter, converter => converter.isCalculating)
+export const selectIsLoading = createSelector(selectConverter, converter => converter.isLoading)
+export const selectIsPayMethodSettled = createSelector(selectConverter, converter => converter.isPayMethodsSettled)
 export const selectConverterData = createSelector(selectState, (state): ConverterRequestData => ({
   invoicePayMethod: state.invoice.currentPayMethod,
   withdrawPayMethod: state.withdraw.currentPayMethod,

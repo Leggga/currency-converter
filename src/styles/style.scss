@@ -1,11 +1,13 @@
 @import "variables";
 @import "reset";
 @import "style-guide/fonts";
+@import "style-guide/text";
 @import "style-guide/common";
 
 * {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
+  line-height: 118%;
   box-sizing: border-box;
   outline: none;
   color: $primary;
@@ -59,16 +61,23 @@ input::-webkit-inner-spin-button {
   box-shadow: 0 8px 28px rgba(0, 0, 0, .08);
   border-radius: 8px;
   min-width: 460px;
+
+  &__pad {
+    margin: 36px 0;
+  }
 }
 
 .currency {
-  &__title {
-    font-size: 48px;
-    line-height: 56px;
-  }
-
   &__fields {
     margin: 36px 0;
+  }
+
+  &__info {
+    margin-bottom: 33px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &__field {
@@ -84,10 +93,26 @@ input::-webkit-inner-spin-button {
   display: flex;
   flex-direction: column;
 
+  &--centered {
+    align-items: center;
+  }
+
   &__grid {
     display: grid;
     grid-template-columns: repeat(2, 315px);
     grid-column-gap: 64px;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 125px);
+    justify-content: center;
+    grid-column-gap: 24px;
   }
 
   &__bottom {

@@ -1,14 +1,13 @@
 import React from 'react'
-import {store} from 'store'
 import {Route, Router, Switch} from 'react-router-dom'
-import {createBrowserHistory} from 'history'
 import {Provider as ReduxProvider} from 'react-redux'
+import history from 'views/routes/history'
+import {store} from 'store'
 //pages
 import MainPage from 'views/pages/MainPage'
 import SubmitPage from 'views/pages/SubmitPage'
 import SuccessPage from 'views/pages/SuccessPage'
 
-const history = createBrowserHistory()
 
 const App: React.FC = () => {
   return (

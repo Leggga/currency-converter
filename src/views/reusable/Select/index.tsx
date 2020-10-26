@@ -25,9 +25,9 @@ const Select: React.FC<Props> = ({options, value, placeholder = '', className = 
   useOnClickOutside(selectRef, () => setIsOpen(false))
 
   const toggleIsOpen = useCallback(() => setIsOpen(!isOpen), [isOpen])
-  const handleClickOption = useCallback((option: OptionType) => {
+  const handleClickOption = useCallback((option: OptionType, selected: boolean) => {
     toggleIsOpen()
-    onChange(option)
+    !selected && onChange(option)
   }, [onChange, toggleIsOpen])
 
   return (
@@ -60,11 +60,11 @@ const Select: React.FC<Props> = ({options, value, placeholder = '', className = 
 type OptionProps = {
   selected: boolean
   option: OptionType
-  onClick: (option: OptionType) => void
+  onClick: (option: OptionType, isSelected: boolean) => void
 }
 
 const Option: React.FC<OptionProps> = ({option, selected = false, onClick}) => {
-  const handleOptionClick = useCallback(() => onClick(option), [onClick, option])
+  const handleOptionClick = useCallback(() => onClick(option, selected), [onClick, option, selected])
 
   return (<div
       className={classNames('select__option', {'select__option--selected': selected})}

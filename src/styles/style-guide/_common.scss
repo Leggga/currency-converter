@@ -8,7 +8,11 @@
   min-height: 46px;
 }
 
-.input {
-  width: 100%;
-  border: none;
+.loader {
+  animation: loader-animation 2s ease-in-out infinite alternate;
+}
+
+@keyframes loader-animation {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(720deg);}
 }

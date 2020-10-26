@@ -1,47 +1,57 @@
-import React from 'react'
-import Select, {OptionType} from 'views/reusable/Select'
-import Input, {OnChangeType} from 'views/reusable/Input'
+import React, {useCallback} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+//types
 import {PaymentBase} from 'types'
-import {useSelector} from 'react-redux'
+//components
+import Select, {OptionType} from 'views/reusable/Select'
+import Input from 'views/reusable/Input'
+//actions
+import {calculateAmountRequest} from 'store/ducks/converter/actions'
+import {setCurrentWithdrawMethod, setWithdrawAmount} from 'store/ducks/withdraw/actions'
+//selectors
 import * as selectors from 'store/ducks/withdraw/selectors'
-import {selectIsCalculating} from 'store/ducks/converter/selectors'
 
 type Props = {
-  base: PaymentBase
-  onPaymentMethodChange: (base: PaymentBase, id: number) => void
-  onAmountChange: (base: PaymentBase, amount: number) => void
+  isCalculating: boolean
+  onBaseChange: (base: PaymentBase) => void
 }
 
-const SellCurrency: React.FC<Props> = ({base, onPaymentMethodChange, onAmountChange}) => {
+const SellCurrency: React.FC<Props> = ({isCalculating, onBaseChange}) => {
+  const dispatch = useDispatch()
   const amount = useSelector(selectors.selectWithdrawAmount)
   const payMethods = useSelector(selectors.selectWithdrawPayMethods)
   const currentPayMethod = useSelector(selectors.selectCurrentWithdrawPayMethod)
-  const isCalculating = useSelector(selectIsCalculating)
 
-  //TODO move this handlers to parent
-  const handleChangePayMethod = (option: OptionType) => {
-    onPaymentMethodChange(base, option.value)
-  }
-  //TODO add debounce
-  const handleChangeAmount: OnChangeType = (value, _) => {
-    onAmountChange(base, +value)
+  const handleChangePaymentMethod = useCallback((option: OptionType) => {
+    dispatch(setCurrentWithdrawMethod(option.value))
+    dispatch(calculateAmountRequest())
+  }, [dispatch])
+
+  const handleChangeAmount = useCallback((value: string | number) => {
+    dispatch(setWithdrawAmount(+value))
+    dispatch(calculateAmountRequest())
+  }, [dispatch])
+
+  const handleChangeBase = () => {
+    onBaseChange('withdraw')
   }
 
   return (
     <div className="currency">
-      <h1 className="currency__title">Sell</h1>
+      <h1 className="currency__title h1">Sell</h1>
       <div className="currency__fields">
         <Select
           className="currency__field"
           options={payMethods}
-          value={currentPayMethod}
-          onChange={handleChangePayMethod}
+          value={currentPayMethod.id}
+          onChange={handleChangePaymentMethod}
         />
         <Input
           className="currency__field"
-          name={base}
+          name="withdrawAmount"
           value={amount.toString()}
           onInput={handleChangeAmount}
+          onFocus={handleChangeBase}
           type="text"
           isDecimal
           isLoading={isCalculating}

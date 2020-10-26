@@ -6,18 +6,15 @@ export type ConverterActions = ActionType<typeof actions>
 
 const initialState: ConverterState = {
   base: 'invoice',
+  isLoading: false,
   isCalculating: false,
-  isExchanging: false
+  isPayMethodsSettled: false
 }
 
 const reducer = createReducer<ConverterState, ConverterActions>(initialState)
-  .handleAction(actions.setPaymentBase, (state, {payload}) => ({
-    ...state,
-    base: payload
-  }))
-  .handleAction(actions.toggleIsCalculating, (state, {payload}) => ({
-    ...state,
-    isCalculating: payload
-  }))
+  .handleAction(actions.setPaymentBase, (state, {payload}) => ({...state, base: payload}))
+  .handleAction(actions.toggleIsCalculating, (state, {payload}) => ({...state, isCalculating: payload}))
+  .handleAction(actions.toggleIsLoading, (state, {payload}) => ({...state, isLoading: payload}))
+  .handleAction(actions.toggleIsPayMethodsSettled, (state, {payload}) => ({...state, isPayMethodsSettled: payload}))
 
 export default reducer

@@ -7,5 +7,8 @@ export const selectWithdrawPayMethods = createSelector(selectWithdraw, withdraw 
   value: item.id,
   label: item.name
 })))
-export const selectCurrentWithdrawPayMethod = createSelector(selectWithdraw, withdraw => withdraw.currentPayMethod)
+export const selectCurrentWithdrawPayMethod = createSelector(selectWithdraw, withdraw => ({
+  id: withdraw.currentPayMethod,
+  name: withdraw.payMethods.find(m => m.id === withdraw.currentPayMethod)?.name
+}))
 export const selectWithdrawAmount = createSelector(selectWithdraw, withdraw => withdraw.amount)
