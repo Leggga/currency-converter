@@ -39,7 +39,7 @@ const SubmitPage: React.FC = () => {
       </div>
       <div className="submitPage__buttons">
         <Button onClick={handleCancel} variant="outline">Cancel</Button>
-        <Button onClick={handleConfirm} isLoading={isLoading}>Confirm</Button>
+        <Button onClick={handleConfirm} isLoading={isLoading} disabled={!invoiceAmount || !withdrawAmount}>Confirm</Button>
       </div>
     </div>
   )

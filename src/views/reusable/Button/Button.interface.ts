@@ -5,5 +5,6 @@ export type Props = {
   children: string
   classname?: string
   isLoading?: boolean
+  disabled?: boolean
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
