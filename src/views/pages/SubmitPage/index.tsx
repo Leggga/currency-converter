@@ -6,7 +6,7 @@ import Button from 'views/reusable/Button'
 //actions
 import {sendBidRequest} from 'store/ducks/converter/actions'
 //selectors
-import {selectIsLoading} from 'store/ducks/converter/selectors'
+import {selectIsLoading,selectIsCalculating} from 'store/ducks/converter/selectors'
 import {selectCurrentInvoicePayMethod, selectInvoiceAmount} from 'store/ducks/invoice/selectors'
 import {selectCurrentWithdrawPayMethod, selectWithdrawAmount} from 'store/ducks/withdraw/selectors'
 //styles
@@ -16,6 +16,7 @@ const SubmitPage: React.FC = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const isLoading = useSelector(selectIsLoading)
+  const isCalculating = useSelector(selectIsCalculating)
   const invoiceAmount = useSelector(selectInvoiceAmount)
   const withdrawAmount = useSelector(selectWithdrawAmount)
   const invoicePayMethod = useSelector(selectCurrentInvoicePayMethod)
@@ -39,7 +40,7 @@ const SubmitPage: React.FC = () => {
       </div>
       <div className="submitPage__buttons">
         <Button onClick={handleCancel} variant="outline">Cancel</Button>
-        <Button onClick={handleConfirm} isLoading={isLoading} disabled={!invoiceAmount || !withdrawAmount}>Confirm</Button>
+        <Button onClick={handleConfirm} isLoading={isLoading || isCalculating} disabled={!invoiceAmount || !withdrawAmount}>Confirm</Button>
       </div>
     </div>
   )
