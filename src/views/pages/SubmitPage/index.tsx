@@ -30,11 +30,11 @@ const SubmitPage: React.FC = () => {
       <div className="container__pad">
         <div className="page__row blk--mb">
           <span className="span--light">Sell</span>
-          <span>{withdrawAmount} {withdrawPayMethod.name}</span>
+          <span>{withdrawAmount.toFixed(2)} {withdrawPayMethod.name}</span>
         </div>
         <div className="page__row">
           <span className="span--light">Buy</span>
-          <span>{invoiceAmount} {invoicePayMethod.name}</span>
+          <span>{invoiceAmount.toFixed(2)} {invoicePayMethod.name}</span>
         </div>
       </div>
       <div className="submitPage__buttons">

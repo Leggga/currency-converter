@@ -1,6 +1,7 @@
 import React from 'react'
+import {OptionType} from 'views/reusable/Select/Select.interface'
 //components
-import Select, {OptionType} from 'views/reusable/Select'
+import Select from 'views/reusable/Select'
 import Input from 'views/reusable/Input'
 //styles
 import "./Currency.scss"
@@ -37,7 +38,7 @@ const Currency: React.FC<Props> = ({
           name='invoiceAmount'
           value={amount}
           type="text"
-          isDecimal
+          positiveNumber
           isLoading={isCalculating}
           onInput={handleChangeAmount}
           onFocus={handleChangeBase}
