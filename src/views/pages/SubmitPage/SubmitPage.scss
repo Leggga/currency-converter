@@ -1,0 +1,8 @@
+.submitPage {
+  &__buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 125px);
+    justify-content: center;
+    grid-column-gap: 24px;
+  }
+}

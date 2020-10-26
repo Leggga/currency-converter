@@ -1,0 +1,17 @@
+.successPage {
+  align-items: center;
+
+  &__icon {
+    margin-bottom: 33px;
+  }
+
+  &__title {
+    margin-bottom: 8px;
+  }
+
+  &__text {
+    max-width: 315px;
+    text-align: center;
+    margin-bottom: 44px;
+  }
+}

@@ -2,12 +2,12 @@ import React, {useCallback} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 //types
 import {PaymentBase} from 'types'
+import {OptionType} from 'views/reusable/Select'
 //components
-import Select, {OptionType} from 'views/reusable/Select'
-import Input from 'views/reusable/Input'
+import Currency from 'views/components/Currency'
 //actions
-import {setCurrentInvoiceMethod, setInvoiceAmount} from 'store/ducks/invoice/actions'
 import {calculateAmountRequest} from 'store/ducks/converter/actions'
+import {setCurrentInvoiceMethod, setInvoiceAmount} from 'store/ducks/invoice/actions'
 //selectors
 import * as selectors from 'store/ducks/invoice/selectors'
 
@@ -34,29 +34,17 @@ const BuyCurrency: React.FC<Props> = ({isCalculating, onBaseChange}) => {
 
   const handleChangeBase = useCallback(() => onBaseChange('invoice'), [onBaseChange])
 
-  //TODO move it to common component
   return (
-    <div className="currency">
-      <h1 className="currency__title h1">Buy</h1>
-      <div className="currency__fields container__pad">
-        <Select
-          className="currency__field"
-          options={payMethods}
-          value={currentPayMethod.id}
-          onChange={handleChangePaymentMethod}
-        />
-        <Input
-          className="currency__field"
-          name='invoiceAmount'
-          value={amount.toString()}
-          onInput={handleChangeAmount}
-          onFocus={handleChangeBase}
-          type="text"
-          isDecimal
-          isLoading={isCalculating}
-        />
-      </div>
-    </div>
+    <Currency
+      title="Buy"
+      inputName="invoice"
+      payMethods={payMethods}
+      amount={amount.toString()}
+      isCalculating={isCalculating}
+      currentPayMethodId={currentPayMethod.id}
+      handleChangeBase={handleChangeBase}
+      handleChangeAmount={handleChangeAmount}
+      handleChangePaymentMethod={handleChangePaymentMethod}/>
   )
 }
 

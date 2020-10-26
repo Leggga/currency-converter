@@ -33,6 +33,7 @@ function* calculateAmount() {
       const {amount}: CalculateAmountResponse = yield call(API.calculateAmountAPI, requestData)
       result = amount
       yield put(actions.calculateAmountSuccess())
+      yield put(actions.toggleIsPayMethodsSettled(true))
     }
 
     if (requestData.base === 'invoice') {
@@ -56,7 +57,6 @@ function* sendBid() {
     const response: SendBidResponse = yield call(API.sendBidAPI, requestData)
 
     yield put(actions.sendBidSuccess())
-    yield put(actions.toggleIsPayMethodsSettled(true))
 
     history.push('/success', response)
   } catch (e) {

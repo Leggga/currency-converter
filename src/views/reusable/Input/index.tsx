@@ -16,10 +16,12 @@ interface InputProps {
   onFocus?: () => void
 }
 
-const Input: React.FC<InputProps> = ({className = '', name, value = '', isLoading, isDecimal, triggerEqualNumber = false, onInput, onFocus, type = 'text'}) => {
+const Input: React.FC<InputProps> = ({
+                                       className = '', name, value = '', isLoading, isDecimal
+                                       , triggerEqualNumber = false, onInput, onFocus, type = 'text'
+                                     }) => {
   const [_value, _setValue] = useState<string>(value)
-  //TODO remove useEffect, bind value
-  //TODO remove lead zero
+
   useEffect(() => {
     _setValue(value)
   }, [value])
@@ -30,7 +32,6 @@ const Input: React.FC<InputProps> = ({className = '', name, value = '', isLoadin
     if (isDecimal) {
       const valueNumber = +value
       const normalizedValue = !Number.isFinite(valueNumber) ? _value : valueNumber >= 0 ? value : _value
-      // const normalizedValue = Number.isFinite(+value) ? value : _value
       const parsedNum = +normalizedValue
       _setValue(normalizedValue.trim())
 

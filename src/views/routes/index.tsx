@@ -8,7 +8,6 @@ import MainPage from 'views/pages/MainPage'
 import SubmitPage from 'views/pages/SubmitPage'
 import SuccessPage from 'views/pages/SuccessPage'
 
-
 const App: React.FC = () => {
   return (
     <ReduxProvider store={store}>
