@@ -1,10 +1,14 @@
 @import "variables";
 @import "reset";
 @import "style-guide/fonts";
+@import "style-guide/common";
 
 * {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
   box-sizing: border-box;
   outline: none;
+  color: $primary;
 }
 
 button, a {
@@ -28,4 +32,66 @@ a {
 button {
   border: none;
   background: transparent;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.app-wrapper {
+  position: relative;
+  min-height: 100vh;
+  background: $light-gray;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 28px 32px;
+  background: $white;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .08);
+  border-radius: 8px;
+  min-width: 460px;
+}
+
+.currency {
+  &__title {
+    font-size: 48px;
+    line-height: 56px;
+  }
+
+  &__fields {
+    margin: 36px 0;
+  }
+
+  &__field {
+    margin-bottom: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.converter {
+  display: flex;
+  flex-direction: column;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 315px);
+    grid-column-gap: 64px;
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: center;
+  }
 }

@@ -1,8 +1,8 @@
-import {all} from 'redux-saga/effects';
-import invoice from './invoice/sagas';
+import {all} from 'redux-saga/effects'
+import converterSaga from './converter/sagas'
 
 export default function* rootSaga() {
   yield all([
-    invoice()
-  ]);
+    converterSaga()
+  ])
 }

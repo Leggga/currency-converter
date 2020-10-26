@@ -1,0 +1,34 @@
+@import "~styles/variables";
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  padding: 16px;
+  min-height: 48px;
+  min-width: 125px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  cursor: pointer;
+  transition: background .3s;
+  border: 1px solid transparent;
+
+  &--primary {
+    background: $secondary;
+    color: $white;
+
+    &:hover {
+      background: rgba($secondary, .7);
+    }
+  }
+
+  &--outline {
+    border: 1px solid $secondary;
+
+    &:hover {
+      background: rgba($secondary, .1);
+    }
+  }
+}

@@ -15,11 +15,13 @@ const App: React.FC = () => {
     <ReduxProvider store={store}>
       <Router history={history}>
         <div className="app-wrapper">
-          <Switch>
-            <Route exact path="/" component={MainPage}/>
-            <Route path="/submit" component={SubmitPage}/>
-            <Route path="/success" component={SuccessPage}/>
-          </Switch>
+          <div className="container">
+            <Switch>
+              <Route exact path="/" component={MainPage}/>
+              <Route path="/submit" component={SubmitPage}/>
+              <Route path="/success" component={SuccessPage}/>
+            </Switch>
+          </div>
         </div>
       </Router>
     </ReduxProvider>

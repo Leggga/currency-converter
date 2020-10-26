@@ -1,6 +1,6 @@
 import {PayMethodType} from 'types'
 
-export type InvoiceStateType = Readonly<{
+export type BasePaymentState = Readonly<{
   payMethods: PayMethodType[]
   currentPayMethod: number
   amount: number
